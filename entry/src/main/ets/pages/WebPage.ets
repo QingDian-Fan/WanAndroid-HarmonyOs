@@ -1,6 +1,6 @@
 @Entry
 @Component
-struct Index {
+struct WebPage {
   @State message: string = 'Hello World'
 
   build() {

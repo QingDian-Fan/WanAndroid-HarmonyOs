@@ -3,6 +3,74 @@
     {
       "name": "start_window_background",
       "value": "#FFFFFF"
+    },
+    {
+      "name": "bg_common",
+      "value": "#FFFFFFFF"
+    },
+    {
+      "name": "bg_default",
+      "value": "#FFF2F4FA"
+    },
+    {
+      "name": "bg_placeholder",
+      "value": "#FFF6F6F6"
+    },
+    {
+      "name": "text_color",
+      "value": "#FF0A0E14"
+    },
+    {
+      "name": "text_sub_color",
+      "value": "#FF6C6C6C"
+    },
+    {
+      "name": "text_light_color",
+      "value": "#FF888888"
+    },
+    {
+      "name": "text_annotation",
+      "value": "#FFC5C5C5"
+    },
+    {
+      "name": "text_blue_color",
+      "value": "#FF40A9FF"
+    },
+    {
+      "name": "line_color",
+      "value": "#FFF2F4FA"
+    },
+    {
+      "name": "colorPink",
+      "value": "#F34981"
+    },
+    {
+      "name": "colorWhite",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "colorGreen",
+      "value": "#11A876"
+    },
+    {
+      "name": "colorRed",
+      "value": "#D93D57"
+    },
+    {
+      "name": "colorBlack",
+      "value": "#000000"
+    },
+    {
+      "name": "transparent",
+      "value": "#00000000"
+    },
+    {
+      "name": "color_line",
+      "value": "#FFF1F1F1"
+    },
+    {
+      "name": "colorGray",
+      "value": "#FF717171"
     }
   ]
 }
