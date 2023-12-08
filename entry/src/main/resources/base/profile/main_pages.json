@@ -3,6 +3,7 @@
     "pages/LoginPage",
     "pages/SplashPage",
     "pages/HomePage",
-    "pages/WebPage"
+    "pages/WebPage",
+    "pages/RegisterPage"
   ]
 }

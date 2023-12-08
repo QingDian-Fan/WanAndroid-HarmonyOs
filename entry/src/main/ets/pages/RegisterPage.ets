@@ -4,7 +4,7 @@ import viewModel from '../vm/NetViewModel'
 
 @Entry
 @Component
-struct LoginPage {
+struct RegisterPage {
   accountNumber: string
   passwordString: string
 
@@ -14,13 +14,11 @@ struct LoginPage {
 
       Image($r('app.media.icon_logo_transparent')).width('100vp').height('100vp')
 
-      Text("登陆页面")
+      Text("注册页面")
         .fontColor($r('app.color.text_color'))
         .fontSize('24fp')
         .fontWeight(FontWeight.Medium)
         .margin({ top: "12vp" })
-
-      Text("登陆账号使用更多服务").fontColor($r('app.color.text_annotation')).fontColor('14fp').margin({ top: '12vp' })
 
       TextInput({ placeholder: '账号' })
         .width("90%")
@@ -41,17 +39,8 @@ struct LoginPage {
           this.passwordString = value
         })
 
-      Row() {
-        Text('注册账号').fontColor($r('app.color.text_blue_color')).fontSize('14fp').margin({ right: '18vp' })
-          .onClick(() => {
-            router.pushUrl({
-              url: 'pages/RegisterPage'
-            })
-          })
-      }.width('90%').margin({ top: '16vp' }).justifyContent(FlexAlign.End)
 
-
-      Button('登陆')
+      Button('注册')
         .width('70%')
         .height('45vp')
         .fontColor($r('app.color.colorWhite'))
@@ -63,20 +52,11 @@ struct LoginPage {
             prompt.showToast({ message: "账号或密码不能为空" })
             return
           }
-          if (viewModel.login(this.accountNumber, this.passwordString)) {
-            prompt.showToast({ message: "请求成功" })
-            router.pushUrl({
-              url: 'pages/HomePage'
-            })
-          } else {
-            prompt.showToast({ message: "请求失败" })
-            router.pushUrl({
-              url: 'pages/HomePage'
-            })
-          }
+          router.back()
         })
       Blank().layoutWeight(2.5)
-    }.width("100%")
-    .height("100%")
+    }
+    .width('100%')
+    .height('100%')
   }
 }
