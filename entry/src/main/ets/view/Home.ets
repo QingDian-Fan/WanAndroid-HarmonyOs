@@ -11,9 +11,11 @@ export default struct Home {
     Column() {
       Swiper(this.swiperController) {
         ForEach(viewModel.getBannerData(), (item: BannerBean) => {
-
+          Image(item.imagePath).borderRadius('16vp')
         }, (item: BannerBean) => JSON.stringify(item.id))
       }
+      .autoPlay(true)
+      .margin('18vp')
 
       List() {
         ForEach(viewModel.getHomeList(0), (item: ArticleBean) => {
