@@ -37,3 +37,38 @@ export function httpRequestPost(url: string,username:string,password:string): Pr
     return serverData;
   })
 }
+
+
+
+export function httpRequestGet(url: string): Promise<ResponseResult> {
+  let httpRequest = http.createHttp();
+  let responseResult = httpRequest.request(url, {
+    method: http.RequestMethod.GET,
+    readTimeout: 10000,
+    header: {
+      'Content-Type': 'application/json'
+    },
+    connectTimeout: 5000,
+    extraData: {}
+  });
+  let serverData: ResponseResult = new ResponseResult();
+  // Processes the data and returns.
+  return responseResult.then((value: http.HttpResponse) => {
+    if (value.responseCode === 200) {
+      // Obtains the returned data.
+      let result = `${value.result}`;
+      let resultJson: ResponseResult = JSON.parse(result);
+      if (resultJson.errorCode === 0) {
+        serverData.data = resultJson.data;
+      }
+      serverData.errorCode = resultJson.errorCode;
+      serverData.errorMsg = resultJson.errorMsg;
+    } else {
+      serverData.errorMsg = "网络请求失败，请稍后尝试！";
+    }
+    return serverData;
+  }).catch(() => {
+    serverData.errorMsg = "网络请求失败，请稍后尝试！";
+    return serverData;
+  })
+}
