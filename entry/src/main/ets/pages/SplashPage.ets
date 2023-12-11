@@ -1,9 +1,38 @@
 import router from '@ohos.router';
-
+import preferences from '@ohos.data.preferences';
+import PrivacyDialog from '../view/PrivacyDialog'
+import common from '@ohos.app.ability.common';
 
 @Entry
 @Component
 struct SplashPage {
+  getDataStore(common: Object) {
+    return preferences.getPreferences(getContext(common), "dataStore")
+  }
+
+  private context?: common.UIAbilityContext
+  private customController: CustomDialogController = new CustomDialogController({
+    builder: PrivacyDialog({
+      confirm: () => {
+        console.log("do it !!!!")
+        this.jumpToLoginPage()
+        this.getDataStore(this).then((preferences: preferences.Preferences) => {
+          preferences.put("isPrivacy", false)
+          preferences.flush();
+        })
+      },
+      cancel: () => {
+        this.context.terminateSelf()
+      }
+    }),
+    alignment: DialogAlignment.Bottom,
+    customStyle: true,
+    offset: {
+      dy: -15,
+      dx: 0
+    }
+  })
+
   build() {
     Column() {
       Blank().layoutWeight(1.2)
@@ -16,9 +45,18 @@ struct SplashPage {
     .height("100%")
   }
 
-
   onPageShow() {
-    this.jumpToLoginPage()
+    this.context = getContext(this) as common.UIAbilityContext
+    this.getDataStore(this).then((preferences: preferences.Preferences) => {
+      preferences.get("isPrivacy", true).then((value: preferences.ValueType) => {
+        if (value) {
+          this.customController.open()
+        } else {
+          this.jumpToLoginPage()
+        }
+      })
+    })
+
   }
 
   jumpToLoginPage() {
